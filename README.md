@@ -26,9 +26,9 @@ Download the dataset from [Kaggle](https://www.kaggle.com/datasets/ankurnapa/bre
 
 ## Models Used
 
-    Linear Regression: A basic model for establishing a baseline in forecasting performance.
-    Random Forest: An ensemble model that uses multiple decision trees to improve the predictive accuracy and control over-fitting.
-    Decision Tree: A model that splits the data into subsets while at the same time developing a corresponding decision tree. The final decision tree can be used to make predictions.
+* Linear Regression: A basic model for establishing a baseline in forecasting performance.
+* Random Forest: An ensemble model that uses multiple decision trees to improve the predictive accuracy and control over-fitting.
+*  Decision Tree: A model that splits the data into subsets while at the same time developing a corresponding decision tree. The final decision tree can be used to make predictions.
 
 ## Results
 
