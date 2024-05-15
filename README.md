@@ -1,5 +1,5 @@
 # Brewery Sales Forecasting
-
+![cloud](imgs/cloud.png)
 ## Project Overview
 This project involves forecasting total sales for a brewery using a dataset from Kaggle. The models used for forecasting include Linear Regression, Random Forest, and Decision Tree. The project has been executed and tested on Google Cloud Platform's DataProc service.
 
@@ -32,4 +32,4 @@ Download the dataset from [Kaggle](https://www.kaggle.com/datasets/ankurnapa/bre
 
 ## Results
 
-Discuss the results from each model, including metrics like RMSE, MAE, or any other relevant evaluation metric used to assess the performance of the models.
+The model was evaluated based on RMSE and R squared.
