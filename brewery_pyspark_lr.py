@@ -10,21 +10,27 @@ from pyspark.ml import Pipeline
 
 
 def main(input_filepath):
+    # Initialize spark session
     spark = SparkSession.builder.appName("Beer analysis").getOrCreate()
 
+    # Load dataset and infer schema
     train = spark.read.csv(
         input_filepath,
         header=True,
         inferSchema=True,
     )
 
+    # Count of dataset
     train.count()
 
+    # Drop duplicates and NAs
     train = train.dropDuplicates()
     train = train.na.drop()
 
+    # Cast the target variable to float
     train = train.withColumn("Total_Sales", col("Total_Sales").cast(FloatType()))
 
+    # As we cannot use the datatime value directly, we split it into Year, Month and Day
     train = train.withColumn(
         "Brew_Date", to_timestamp(col("Brew_Date"), "yyyy-MM-dd HH:mm:ss")
     )
@@ -34,6 +40,7 @@ def main(input_filepath):
         .withColumn("Year", date_format(col("Brew_Date"), "yyyy"))
     )
 
+    # Convert categorical columns into one hot encoded for Linear Regression
     categoricalColumns = ["Beer_Style", "SKU", "Location"]
 
     stages = []
@@ -65,31 +72,40 @@ def main(input_filepath):
 
     assemblerInputs = [c + "OHE" for c in categoricalColumns] + numeric_columns
 
+    # Initialize VectorAssembler
     assembler = VectorAssembler(
         inputCols=assemblerInputs,
         outputCol="features",
     )
     stages += [assembler]
 
+    # We trained on partial data during in the notebook. Over here we split all the datasets 80:20 as we pass in 100% of the data
+    # Split the data into train and test
     train_data, test_data = train.randomSplit([0.8, 0.2], seed=42)
     rf = LinearRegression(featuresCol="features", labelCol="Total_Sales")
     stages += [rf]
 
     pipeline = Pipeline(stages=stages)
+
+    # Train the model
     model = pipeline.fit(train_data)
 
+    # Provide output predictions
     predictions = model.transform(test_data)
 
+    # Initialize evaluator
     evaluator = RegressionEvaluator(
         labelCol="Total_Sales", predictionCol="prediction", metricName="rmse"
     )
     rmse = evaluator.evaluate(predictions)
     print(f"Root Mean Squared Error (RMSE) on test data = {rmse}")
 
+    # Compute RMSE
     evaluator = RegressionEvaluator(
         labelCol="Total_Sales", predictionCol="prediction", metricName="r2"
     )
 
+    # Compute RMSE
     r2 = evaluator.evaluate(predictions)
     print("R Squared on test data = %g" % r2)
 

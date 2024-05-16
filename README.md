@@ -1,4 +1,4 @@
-# Brewery Sales Forecasting
+# Brewery Sales Forecasting🍺
 ![cloud](imgs/cloud.png)
 ## Project Overview
 This project involves forecasting total sales for a brewery using a dataset from Kaggle. The models used for forecasting include Linear Regression, Random Forest, and Decision Tree. The project has been executed and tested on Google Cloud Platform's DataProc service.
@@ -24,11 +24,17 @@ The dataset used in this project can be found at [Kaggle Brewery Operations and 
 ## Download the Dataset:
 Download the dataset from [Kaggle](https://www.kaggle.com/datasets/ankurnapa/brewery-operations-and-market-analysis-dataset/) and upload it to a bucket in Google Cloud Storage accessible by your DataProc cluster.
 
+## EDA
+Refer to `notebooks/Brewery data analysis.ipynb` and [databricks notebook](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/5182382688665269/526089589527995/7916894787093757/latest.html )
+
 ## Models Used
 
-* **Linear Regression:** A basic model for establishing a baseline in forecasting performance.
-* **Random Forest:** An ensemble model that uses multiple decision trees to improve the predictive accuracy and control over-fitting.
-*  **Decision Tree:** A model that splits the data into subsets while at the same time developing a corresponding decision tree. The final decision tree can be used to make predictions.
+* **Linear Regression:** A basic model for establishing a baseline in forecasting performance. Refer to `brewery_pyspark_lr.py`
+* **Random Forest:** An ensemble model that uses multiple decision trees to improve the predictive accuracy and control over-fitting. Refer to `brewery_pyspark_rf.py`
+*  **Decision Tree:** A model that splits the data into subsets while at the same time developing a corresponding decision tree. The final decision tree can be used to make predictions. Refer to `brewery_pyspark_dt.py`
+
+## Parameter Selection
+`brewery_pyspark_rf_grid.py`
 
 ## Results
 
