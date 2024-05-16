@@ -41,6 +41,7 @@ Refer to `notebooks/Brewery data analysis.ipynb` and [databricks notebook](https
 * Split DateTime column into Year, Month and Day
 * Convert categorical columns to numeric values or one hot encoding-Linear Regression
 * Initialize VectorAssembler
+* Split dataset into Train and Test
 * Initialize Model
 * [Optional] Initialize params for grid search
 * [Optional] Initialize the CrossValidator along with metric
@@ -48,6 +49,7 @@ Refer to `notebooks/Brewery data analysis.ipynb` and [databricks notebook](https
 * Initialize evaluator
 * Compute RMSE and R squared
 
+**_NOTE:_**  As we're not treating this as a time series problem we can split it randomly into Train and Test 
 ## Parameter Selection
 `brewery_pyspark_rf_grid.py`
 
