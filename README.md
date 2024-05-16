@@ -33,9 +33,24 @@ Refer to `notebooks/Brewery data analysis.ipynb` and [databricks notebook](https
 * **Random Forest:** An ensemble model that uses multiple decision trees to improve the predictive accuracy and control over-fitting. Refer to `brewery_pyspark_rf.py`
 *  **Decision Tree:** A model that splits the data into subsets while at the same time developing a corresponding decision tree. The final decision tree can be used to make predictions. Refer to `brewery_pyspark_dt.py`
 
+## Training:
+* Initialize SparkSession
+* Load dataset
+* Drop duplicates and NAs
+* Cast the target variable to Float
+* Split DateTime column into Year, Month and Day
+* Convert categorical columns to numeric values or one hot encoding-Linear Regression
+* Initialize VectorAssembler
+* Initialize Model
+* [Optional] Initialize params for grid search
+* [Optional] Initialize the CrossValidator along with metric
+* Train the model
+* Initialize evaluator
+* Compute RMSE and R squared
+
 ## Parameter Selection
 `brewery_pyspark_rf_grid.py`
 
 ## Results
 
-The model was evaluated based on RMSE and R squared.
+RMSE: 2486
